@@ -30,7 +30,11 @@
               }
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/swiper/swiper-bundle.min.js"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -93,11 +97,18 @@
               }
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/swiper/swiper-bundle.min.js"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
