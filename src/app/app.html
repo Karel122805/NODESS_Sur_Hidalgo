@@ -1,22 +1,21 @@
-<!-- BOTÓN MENÚ -->
-<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<button class="menu-toggle" (click)="toggleMenu()">☰</button>
 
-<!-- NAV -->
-<nav class="nav-bar">
+<nav class="nav-bar" [ngClass]="{ 'open': isMenuOpen }">
   <img src="logoAzul.png" alt="Logo NODEES" class="logo-nav" />
   <div class="nav-links">
-    <a href="#inicio">Inicio</a>
-    <a href="#quienes-somos">¿Quiénes somos?</a>
-    <a href="#objetivo">Objetivo</a>
-    <a href="#como-funciona">¿Cómo funciona?</a>
-    <a href="#lineas">Líneas de investigación</a>
-    <a href="#valores">Valores</a>
-    <a href="#alianzas">Alianzas</a>
-    <a href="#eventos">Eventos</a>
-    <a href="#recursos">Recursos</a>
-    <a href="#contacto">Contáctanos</a>
+    <a href="#inicio" (click)="closeMenuIfMobile()">Inicio</a>
+    <a href="#quienes-somos" (click)="closeMenuIfMobile()">¿Quiénes somos?</a>
+    <a href="#objetivo" (click)="closeMenuIfMobile()">Objetivo</a>
+    <a href="#como-funciona" (click)="closeMenuIfMobile()">¿Cómo funciona?</a>
+    <a href="#lineas" (click)="closeMenuIfMobile()">Líneas de investigación</a>
+    <a href="#valores" (click)="closeMenuIfMobile()">Valores</a>
+    <a href="#alianzas" (click)="closeMenuIfMobile()">Alianzas</a>
+    <a href="#eventos" (click)="closeMenuIfMobile()">Eventos</a>
+    <a href="#recursos" (click)="closeMenuIfMobile()">Recursos</a>
+    <a href="#contacto" (click)="closeMenuIfMobile()">Contáctanos</a>
   </div>
 </nav>
+
 
 <main>
  
@@ -24,7 +23,7 @@
 <section id="inicio" class="section inicio">
   <!-- Texto -->
   <div class="slider-overlay texto-overlay">
-    <h1>NODEES Polo Sur Hidalgo</h1>
+    <h1>Nodo Polo Económico Sur - Hidalgo </h1>
     <p>
       Economía Social y Solidaria con base en conocimiento, innovación tecnológica y responsabilidad social.
     </p>
@@ -34,25 +33,40 @@
 
 
   <!-- Carrusel -->
-  <div class="slider" style="--width: 360px; --height: 420px; --quantity: 3;">
+  <div class="slider">
     <div class="list">
-      <div class="item" style="--position: 1">
-        <div class="card">
-          <img src="n1.jpg" alt="Imagen 1" />
-        </div>
-      </div>
-      <div class="item" style="--position: 2">
-        <div class="card">
-          <img src="n2.jpg" alt="Imagen 2" />
-        </div>
-      </div>
-      <div class="item" style="--position: 3">
-        <div class="card">
-          <img src="n3.jpg" alt="Imagen 3" />
-        </div>
-      </div>
+      <!-- Originales -->
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <!-- Duplicadas (obligatorio para scroll infinito) -->
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
+
+      <div class="item"><div class="card"><img src="n1.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n2.jpg"></div></div>
+      <div class="item"><div class="card"><img src="n3.jpg"></div></div>
     </div>
   </div>
+
 </section>
 
 
@@ -69,7 +83,7 @@
     </p>
 
     <!-- Imagen agregada -->
-    <img src="orgulloUPP.jpg" alt="Orgullo UPP" class="imagen-orgullo">
+    <img src="nodessSurHgo.jpg" alt="Orgullo UPP" class="imagen-orgullo">
   </div>
 </section>
 
@@ -252,7 +266,7 @@
         <div class="resource-cardd">
           <h3>No hay eventos disponibles</h3>
           <p>...</p>
-          <a href="" target="_blank" class="btn-recurso">Ver Evento</a>
+          <a href="#eventos" target="_blank" class="btn-recurso">Ver Evento</a>
         </div>
       </div>
       
@@ -339,15 +353,14 @@
 
     <!-- Mensaje de éxito -->
     <div id="mensaje-exito" class="mensaje-exito">
-      ✅ ¡Mensaje enviado exitosamente!
+       ¡Mensaje enviado exitosamente!
     </div>
 
-    <form id="formulario-contacto" action="https://formsubmit.co/vargaskarel28@gmail.com" method="POST" class="formulario-contacto">
+    <form id="formulario-contacto" action="https://formsubmit.co/nodess.hidalgo@upp.edu.mx" method="POST" class="formulario-contacto">
       <input type="text" name="nombre" placeholder="Nombre completo" required />
       <input type="email" name="correo" placeholder="Correo electrónico" required />
       <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." rows="5" required></textarea>
       <button type="submit">Enviar mensaje</button>
-
       <!-- Opcionales -->
       <input type="hidden" name="_captcha" value="false">
     </form>
@@ -369,10 +382,9 @@
 <footer class="footer-redes">
   <p>Síguenos en redes para conocer avances y convocatorias.</p>
   <div class="redes">
-    <a href="#" target="_blank" class="icon fb"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="#" target="_blank" class="icon ig"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#" target="_blank" class="icon yt"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=61577622021245" target="_blank" class="icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://www.youtube.com/@NodoPoloSurHidalgo" target="_blank" class="icon yt"><i class="fa-brands fa-youtube"></i></a>
   </div>
-  <p>© 2025 NODEES Sur de Hidalgo | UPP</p>
+  <p>© 2025 NODESS Sur_Hidalgo | UPP</p>
 </footer>
 
