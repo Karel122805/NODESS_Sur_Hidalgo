@@ -22,5 +22,150 @@
   }
 </script>
   <app-root></app-root>
+
+<!-- ============================= -->
+  <!-- Script: Eventos dinámicos CSV -->
+  <!-- ============================= -->
+  <script>
+  (function () {
+    // URL pública del CSV de Google Sheets (la tuya)
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0LUcFZC7CBPAXPPVqcHOOdlI53U5Y1b2z2F01k9KWvfPiuAJwEXoo1zIzzFPqC3N6dQOZZG90m2uC/pub?gid=0&single=true&output=csv';
+
+    // Re-consultar cada 10 minutos (puedes cambiarlo)
+    const REFRESH_MS = 1 * 60 * 1000;
+
+    // Espera a que Angular haya montado el DOM y luego inicia
+    window.addEventListener('load', () => {
+      waitForEl('#eventos-list', 100, 80).then(initEventos).catch(console.warn);
+    });
+
+    function waitForEl(selector, intervalMs = 100, tries = 50) {
+      return new Promise((resolve, reject) => {
+        const timer = setInterval(() => {
+          const el = document.querySelector(selector);
+          if (el) { clearInterval(timer); resolve(el); }
+          if (--tries <= 0) { clearInterval(timer); reject(new Error('Contenedor no encontrado: ' + selector)); }
+        }, intervalMs);
+      });
+    }
+
+    function initEventos() {
+      cargarEventos();
+      setInterval(cargarEventos, REFRESH_MS);
+    }
+
+    async function cargarEventos() {
+      const list = byId('eventos-list');
+      const vacio = byId('eventos-vacio');
+      const loading = byId('eventos-loading');
+
+      try {
+        if (loading) loading.style.display = 'block';
+
+        const url = `${SHEET_CSV_URL}${SHEET_CSV_URL.includes('?') ? '&' : '?'}v=${Date.now()}`; // anti-caché
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('No se pudo leer la hoja (CSV).');
+        const csv = await res.text();
+
+        const eventos = limpiarYOrdenar(csvToJson(csv));
+        renderEventos(eventos, list, vacio, loading);
+      } catch (e) {
+        console.error(e);
+        renderEventos([], list, vacio, loading);
+      }
+    }
+
+    function renderEventos(eventos, list, vacio, loading) {
+      if (!list) return;
+      list.innerHTML = '';
+      if (loading) loading.style.display = 'none';
+
+      const hoy = new Date(); hoy.setHours(0,0,0,0);
+      const futuros = (Array.isArray(eventos) ? eventos : []).filter(ev => {
+        const d = new Date(ev.fecha);
+        d.setHours(0,0,0,0);
+        return !isNaN(d) && d >= hoy;
+      });
+
+      if (!futuros.length) {
+        if (vacio) vacio.style.display = 'block';
+        return;
+      } else {
+        if (vacio) vacio.style.display = 'none';
+      }
+
+      for (const ev of futuros) {
+        const fechaBase = ev.hora ? new Date(`${ev.fecha}T${ev.hora}`) : new Date(ev.fecha);
+        const fechaStr = !isNaN(fechaBase) ? fechaBase.toLocaleDateString('es-MX', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        }) : (ev.fecha || '');
+        const horaStr  = ev.hora && !isNaN(fechaBase) ? fechaBase.toLocaleTimeString('es-MX', {
+          hour: '2-digit', minute: '2-digit'
+        }) : '';
+
+        const card = document.createElement('div');
+        card.className = 'resource-cardd';
+        card.innerHTML = `
+          ${ev.imagen ? `<img src="${ev.imagen}" alt="${escapeHtml(ev.titulo || 'Evento')}"
+               style="width:100%;border-radius:10px;aspect-ratio:16/9;object-fit:cover;margin-bottom:.75rem;">` : ''}
+          <h3>${escapeHtml(ev.titulo || 'Evento')}</h3>
+          <p><strong>Fecha:</strong> ${escapeHtml(fechaStr)}${horaStr ? ' — ' + escapeHtml(horaStr) : ''}</p>
+          ${ev.lugar ? `<p><strong>Lugar:</strong> ${escapeHtml(ev.lugar)}</p>` : ''}
+          ${ev.descripcion ? `<p>${escapeHtml(ev.descripcion)}</p>` : ''}
+          ${ev.link ? `<a href="${ev.link}" target="_blank" rel="noopener" class="btn-recurso">Ver Evento</a>` : ''}
+        `;
+        list.appendChild(card);
+      }
+    }
+
+    // -------- Utilidades --------
+    function byId(id) { return document.getElementById(id); }
+
+    function limpiarYOrdenar(eventos) {
+      return (Array.isArray(eventos) ? eventos : [])
+        .filter(ev => ev.fecha && !isNaN(new Date(ev.fecha)))
+        .sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    }
+
+    // Parser CSV robusto (maneja comas entre comillas y saltos de línea)
+    function csvToJson(csv) {
+      const rows = [];
+      let i = 0, field = '', row = [], inQuotes = false;
+      csv = csv.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      while (i < csv.length) {
+        const ch = csv[i];
+        if (ch === '"') {
+          if (inQuotes && csv[i + 1] === '"') { field += '"'; i++; }
+          else inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+          row.push(field); field = '';
+        } else if (ch === '\n' && !inQuotes) {
+          row.push(field); rows.push(row); row = []; field = '';
+        } else {
+          field += ch;
+        }
+        i++;
+      }
+      if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
+      if (!rows.length) return [];
+
+      const headers = rows[0].map(h => h.trim().toLowerCase());
+      return rows.slice(1)
+        .filter(r => r.some(x => x && x.trim() !== ''))
+        .map(r => {
+          const obj = {};
+          headers.forEach((h, idx) => obj[h] = (r[idx] ?? '').trim());
+          return obj;
+        });
+    }
+
+    // Evita inyección de HTML
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+  })();
+  </script>
 </body>
 </html>
