@@ -1,0 +1,66 @@
+/* ===== QUIÉNES SOMOS ===== */
+.quienes-somos {
+  background-color: #5abdb4; /* ya lo usas de base */
+  color: #ffffff;
+}
+
+.quienes-somos .content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1rem; /* respiro lateral en móvil */
+}
+
+/* Título y texto */
+.quienes-somos h2 {
+  font-size: 2rem;
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+}
+
+.quienes-somos p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  color: #f7fafa;
+}
+
+/* Link de correo dentro del párrafo */
+.quienes-somos a {
+  color: #082a6b;               /* buen contraste */
+  background: #D0FF5F;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.quienes-somos a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  background-color: #b9ea4c;
+}
+
+/* Imagen destacada de la sección */
+.imagen-orgullo {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid rgba(0, 0, 0, 0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .quienes-somos h2 { font-size: 1.6rem; }
+  .imagen-orgullo { border-width: 2px; border-radius: 10px; }
+}
+
+@media (max-width: 480px) {
+  .quienes-somos h2 { font-size: 1.4rem; }
+}
