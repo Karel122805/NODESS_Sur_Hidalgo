@@ -1,0 +1,10 @@
+/* ===== 9) EVENTOS ===== */
+.resource-gridd{ display:flex; justify-content:center; align-items:center; margin-top:2rem; }
+.resource-cardd{
+  background:#0030b480; border-radius:12px; padding:1.5rem; box-shadow:0 6px 18px rgba(0,0,0,.1);
+  text-align:left; transition:transform .3s ease, box-shadow .3s ease;
+  width:100%; max-width:300px;
+}
+.resource-cardd:hover{ transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,.15); }
+.resource-cardd h3{ font-size:1.2rem; margin-bottom:.6rem; color:#fff; }
+.resource-cardd p{ font-size:.95rem; margin-bottom:1rem; color:#e6e6e6; }

@@ -1,0 +1,19 @@
+/* ===== 8) ALIANZAS ===== */
+#alianzas h2{ font-size:2rem; text-align:center; color:#0d2c54; margin-bottom:1rem; }
+#alianzas p{ font-size:1rem; line-height:1.6; color:#333; text-align:center; padding:0 1rem; }
+
+.imagen-noticia{
+  display:block; width:100%; max-width:600px; height:auto; margin:1rem auto;
+  border-radius:10px; border:3px solid rgba(0,0,0,.705);
+  box-shadow:0 6px 20px rgba(0,0,0,.8);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.imagen-noticia:hover{ transform:scale(1.03); box-shadow:0 10px 30px rgba(0,0,0,.9); }
+
+.descripcion-img{ text-align:center; font-size:.95rem; color:#444; margin-top:.5rem; padding:0 1rem; }
+
+@media (max-width:600px){
+  #alianzas h2{ font-size:1.6rem; }
+  .descripcion-img, #alianzas p{ font-size:.95rem; padding:0 .5rem; }
+  .imagen-noticia{ max-width:90%; }
+}

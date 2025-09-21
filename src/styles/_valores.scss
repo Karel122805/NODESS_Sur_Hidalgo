@@ -1,0 +1,16 @@
+/* ===== 7) VALORES ===== */
+.valores-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:5rem;
+  margin-top:2rem; justify-items:center; max-width:1200px; margin-left:auto; margin-right:auto;
+}
+.valor-card{
+  background:#2953a088; border-radius:10px; padding:1.5rem; box-shadow:0 4px 10px rgba(0,0,0,.2);
+  transition:transform .3s ease; width:100%; max-width:340px; text-align:center; color:#fff;
+}
+.valor-card:hover{ transform:translateY(-5px); }
+.valor-card img{ width:80px; height:auto; margin:1rem 0; }
+.valor-card h3{ background:#2953a0; padding:.5rem; border-radius:6px; margin:0 auto 1rem; color:#fff; font-size:1.1rem; }
+.valor-card p{ font-size:1rem; color:#fff; }
+
+@media (max-width:900px){ .valores-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .valores-grid{ grid-template-columns:1fr; } }

@@ -1,0 +1,34 @@
+/* ===== 10) RECURSOS ===== */
+.resource-grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2rem; margin-top:2rem; justify-items:center;
+}
+.resource-card{
+  background:#5abdb546; border-radius:12px; padding:1.5rem; box-shadow:0 6px 18px rgba(0,0,0,.1);
+  text-align:left; transition:transform .3s ease, box-shadow .3s ease; width:100%; max-width:300px;
+}
+.resource-card:hover{ transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,.15); }
+.resource-card h3{ font-size:1.2rem; margin-bottom:.6rem; color:#2953A0; }
+.resource-card p{ font-size:.95rem; margin-bottom:1rem; color:#333; }
+
+.btn-recurso{
+  display:inline-block; background:#D0FF5F; padding:8px 16px; border-radius:6px;
+  color:#000; font-weight:bold; text-decoration:none; transition:background-color .3s;
+}
+.btn-recurso:hover{ background:#a2c64d; }
+
+/* Variante con mayor separación (tu segunda definición) */
+.resource-grid{
+  grid-template-columns:repeat(3,1fr);
+  gap:3rem 4rem; margin-top:3rem; justify-items:center; max-width:1200px; margin-left:auto; margin-right:auto;
+}
+
+/* Responsive específico de recursos */
+@media (max-width:768px){
+  .resource-grid{ grid-template-columns:repeat(2,1fr); gap:2rem; }
+  .resource-card{ max-width:90%; }
+}
+@media (max-width:480px){
+  .resource-grid{ grid-template-columns:1fr; }
+  .resource-card{ max-width:100%; }
+}

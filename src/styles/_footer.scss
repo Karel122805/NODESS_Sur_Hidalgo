@@ -1,0 +1,17 @@
+/* ===== 12) FOOTER ===== */
+.footer-redes{
+  background:#2953A0; text-align:center; padding:2rem; color:#fff; font-weight:500;
+}
+.footer-redes p{ margin-bottom:1rem; }
+
+.redes{ display:flex; justify-content:center; gap:2rem; margin-bottom:1rem; }
+.icon{
+  width:48px; height:48px; border-radius:50%; background:#f1f1f1; color:#333;
+  display:flex; align-items:center; justify-content:center; transition:all .3s ease; font-size:20px;
+}
+.icon:hover{ transform:scale(1.1); color:#fff; }
+.icon.tik:hover{ background:radial-gradient(circle at top left,#25f4ee,#010101,#fe2c55); }
+.icon.wsp:hover{ background:#25D366; }
+.icon.fb:hover{ background:#1877f2; }
+.icon.ig:hover{ background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.icon.yt:hover{ background:#FF0000; }

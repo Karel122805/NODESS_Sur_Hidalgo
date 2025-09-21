@@ -1,0 +1,71 @@
+/* ===== 1) GLOBAL / BASE ===== */
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fefefe;
+}
+
+main { margin-top: 100px; }
+
+.section {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  background-color: #ffffff;
+  color: black;
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .section { padding-top: 6rem; scroll-margin-top: 80px; }
+}
+
+.content { max-width: 900px; text-align: center; }
+
+/* Colores de fondo por sección */
+.inicio, .objetivo, .lineas, .alianzas { background-color:#ffffff; color:#000; }
+.quienes-somos, .como-funciona, .valores, .eventos, .contacto { background:#5abdb4; color:#fff; }
+
+/* Títulos y texto */
+.section h1, .section h2 { margin-top:0; font-size:2rem; }
+.section p { font-size:1.1rem; line-height:1.6; margin-bottom:1.5rem; }
+
+/* Listas limpias */
+ul { list-style:none; padding:0; margin:0 auto; max-width:600px; text-align:left; }
+ul li { margin-bottom:.5rem; position:relative; padding-left:1.2em; }
+ul li::before { content:"•"; position:absolute; left:0; color:currentColor; }
+
+/* Botón común */
+button {
+  background:#D0FF5F; border:none; padding:10px 20px; border-radius:6px;
+  cursor:pointer; font-weight:bold;
+}
+button:hover { background:#89b638; }
+
+/* Mascotas (global) */
+.mascota-gif{ position:fixed; bottom:20px; left:-150px; z-index:999; animation:flotarNodo 15s linear infinite; pointer-events:none; }
+.mascota-gif img{ width:120px; height:auto; }
+.mascota-fija{ position:fixed; bottom:10px; right:10px; z-index:999; width:500px; pointer-events:none; }
+.mascota-fija img{ width:600px; height:auto; border-radius:100px; }
+
+/* Responsive global extra */
+@media (max-width:768px){
+  .section{ padding:6rem 1rem 4rem; }
+  .mascota-fija{ width:200px; bottom:5px; right:5px; }
+  .mascota-gif img{ width:80px; }
+}
+@media (max-width:480px){
+  .section h1, .section h2{ font-size:1.4rem; }
+  .section p{ font-size:1rem; }
+}
