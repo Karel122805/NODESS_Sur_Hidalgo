@@ -1,0 +1,39 @@
+/* ===== MASCOTA FIJA ===== */
+.mascota-fija {
+  position: fixed !important;
+  right: 0 !important;    /* pegada a la derecha */
+  bottom: 0 !important;   /* pegada abajo */
+  z-index: 10000 !important;
+  margin: 0 !important;
+  pointer-events: none;   /* evita bloquear clics */
+
+  /* Tamaño fijo grande (en todas las pantallas) */
+  width: 480px !important;
+  height: auto !important;
+
+  /* Que sobresalga hacia afuera del borde derecho */
+  transform: translate(35%, 0) !important;
+
+  /* Animación ligera de “rebote” al desplazarse */
+  animation: mascota-bounce 4s ease-in-out infinite;
+
+  img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    pointer-events: auto;     /* para que se pueda clicar */
+    user-select: none;
+    -webkit-user-drag: none;
+
+    /* Sombras bonitas */
+    filter:
+      drop-shadow(0 20px 32px rgba(0,0,0,.35))
+      drop-shadow(0 8px 14px rgba(0,0,0,.20));
+  }
+}
+
+/* Animación rebote */
+@keyframes mascota-bounce {
+  0%, 100% { transform: translate(35%, 0) scale(1); }
+  50%      { transform: translate(35%, -12px) scale(1.03); }
+}

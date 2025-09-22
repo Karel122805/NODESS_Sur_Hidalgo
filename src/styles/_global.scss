@@ -53,12 +53,6 @@ button {
 }
 button:hover { background:#89b638; }
 
-/* Mascotas (global) */
-.mascota-gif{ position:fixed; bottom:20px; left:-150px; z-index:999; animation:flotarNodo 15s linear infinite; pointer-events:none; }
-.mascota-gif img{ width:120px; height:auto; }
-.mascota-fija{ position:fixed; bottom:10px; right:10px; z-index:999; width:500px; pointer-events:none; }
-.mascota-fija img{ width:600px; height:auto; border-radius:100px; }
-
 /* Responsive global extra */
 @media (max-width:768px){
   .section{ padding:6rem 1rem 4rem; }

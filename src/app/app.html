@@ -19,7 +19,9 @@
 
 <main>
  
+<!-- ===================== -->
   <!-- INICIO -->
+<!-- ===================== -->
 <section id="inicio" class="section inicio">
   <!-- Texto -->
   <div class="slider-overlay texto-overlay">
@@ -69,8 +71,10 @@
 
 </section>
 
-
+<!-- ===================== -->
  <!-- QUIÉNES SOMOS -->
+<!-- ===================== -->
+
 <section id="quienes-somos" class="section quienes-somos">
   <div class="content">
     <h2>¿Quiénes somos?</h2>
@@ -92,8 +96,10 @@
 </section>
 
 
+<!-- ===================== -->
+<!-- OBJETIVO -->
+<!-- ===================== -->
 
-  <!-- OBJETIVO -->
 <section id="objetivo" class="section objetivo">
   <div class="content">
     <h2>Objetivo</h2>
@@ -117,8 +123,9 @@
   </div>
 </section>
 
-
+<!-- ===================== -->
 <!-- CÓMO FUNCIONA -->
+<!-- ===================== -->
 <section id="como-funciona" class="section como-funciona">
   <div class="content">
     <h2>¿Cómo funciona?</h2>
@@ -170,11 +177,9 @@
   </div>
 </section>
 
-
-
-
-
+<!-- ===================== -->
  <!-- LÍNEAS DE INVESTIGACIÓN -->
+<!-- ===================== -->
 <section id="lineas" class="section lineas">
   <div class="content">
     <h2 class="titulo-seccion">Líneas de investigación</h2>
@@ -210,8 +215,10 @@
 </section>
 
 
-
+<!-- ===================== -->
  <!-- VALORES -->
+<!-- ===================== -->
+
 <section id="valores" class="section valores">
   <div class="content">
     <h2>Valores</h2>
@@ -239,8 +246,10 @@
   </div>
 </section>
 
-
+<!-- ===================== -->
 <!-- ALIANZAS -->
+ <!-- ===================== -->
+
 <section id="alianzas" class="section alianzas">
   <div class="content">
     <h2>Alianzas</h2>
@@ -286,83 +295,38 @@
     </div>
   </div>
 </section>
-<!-- ===================== -->
-<!-- FIN SECCIÓN DE EVENTOS -->
-<!-- ===================== -->
 
-
- <!-- RECURSOS -->
+<!-- ===================== -->
+<!-- RECURSOS (dinámico con Google Sheet) -->
+<!-- ===================== -->
 <section id="recursos" class="section recursos">
   <div class="content">
-    
     <h2>Recursos</h2>
 
-    <div class="resource-grid">
+    <!-- Estado de carga -->
+    <p id="recursos-loading">Cargando recursos…</p>
 
-      <div class="resource-card">
-        <h3>Guía para emprender en economía social</h3>
-        <p>Manual práctico para iniciativas de ESS. Descarga el PDF oficial.</p>
-        <a href="https://base.socioeco.org/docs/guia-para-emprender-en-economia-social.pdf" target="_blank" class="btn-recurso">Ver documento</a>
-      </div>
+    <!-- Grid dinámico -->
+    <div class="resource-grid" id="recursos-grid"></div>
 
-      <div class="resource-card">
-        <h3>¿Qué son los NODESS?</h3>
-        <p>Por el NODESS Vida y Saberes.</p>
+    <!-- Estado vacío -->
+    <div id="recursos-vacio" class="resource-card" style="display:none;">
+      <h3>Aún no hay recursos publicados</h3>
+      <p>Pronto añadiremos contenidos.</p>
+    </div>
 
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-          <iframe 
-            src="https://www.youtube.com/embed/P3tYQqobs0U" 
-            title="Video educativo" 
-            frameborder="0" 
-            allowfullscreen 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border-radius: 10px;">
-          </iframe>
-        </div>
-      </div>
-
-
-      <div class="resource-card">
-        <h3>UPP como Pre-NODESS</h3>
-        <p>Designan a UPP como Pre-NODESS 2024</p>
-        <a href="https://www.facebook.com/UPPachuca/posts/orgulloupp/489636147103402/" class="btn-recurso">UPP NODESS</a>
-      </div>
-
-      <div class="resource-card">
-        <h3>Nodos de Impulso a la ESS</h3>
-        <p>Consulta información oficial de los NODESS desde la web del Gobierno.</p>
-        <a href="https://www.gob.mx/inaes/acciones-y-programas/nodos-de-impulso-a-la-economia-social-y-solidaria-nodess-233732" target="_blank" class="btn-recurso">Ir al sitio</a>
-      </div>
-
-      <div class="resource-card">
-        <h3>Conoce a los NODESS</h3>
-        <p>PConoce su impacto y su labor en la Economía Social y como son parte fundamental del #INAES.</p>
-
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-          <iframe 
-            src="https://www.youtube.com/embed/3bTArIBNars?si=8wiDUNeypP1eQTN7" 
-            title="Video educativo" 
-            frameborder="0" 
-            allowfullscreen 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border-radius: 10px;">
-          </iframe>
-        </div>
-      </div>
-
-      <div class="resource-card">
-        <h3>NODESS 2022</h3>
-        <p>Documento_NODESS_2022.</p>
-        <a href="https://www.itsx.edu.mx/downloads/Documento_NODESS_2022-1.pdf" target="_blank" class="btn-recurso">Ir al sitio</a>
-      </div>
-
+    <!-- Botón Ver más -->
+    <div class="recursos-actions">
+      <button id="recursos-ver-mas" class="btn-ver-mas" hidden>Ver más</button>
     </div>
   </div>
 </section>
 
 
-  
+<!-- ===================== -->
 <!-- CONTACTO -->
+<!-- ===================== -->
+
 <section id="contacto" class="section contacto">
   <div class="content">
     <h2 class="titulo-seccion">Contáctanos</h2>
@@ -394,7 +358,10 @@
 
 </main>
 
+<!-- ===================== -->
 <!-- FOOTER -->
+<!-- ===================== -->
+
 <footer class="footer-redes">
   <p>Síguenos en redes para conocer avances y convocatorias.</p>
   <div class="redes">
